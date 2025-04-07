@@ -3,9 +3,9 @@
 public class Controller
 {
     // Поля
-    private string state;
-    private List<Data> collectedData;
-    private List<object> connectedObjects;
+    public static string state;
+    public static List<Data> collectedData;
+    public static List<object> connectedObjects;
 
     // Конструктор
     public Controller()
@@ -16,24 +16,24 @@ public class Controller
     }
 
     // Методы
-    public void StartSystem()
+    public virtual void StartSystem()
     {
         state = "Включен";
         Console.WriteLine("Система запущена.");
     }
 
-    public void StopSystem()
+    public virtual void StopSystem()
     {
         state = "Выключен";
         Console.WriteLine("Система остановлена.");
     }
 
-    public string CheckState()
+    public virtual string CheckState()
     {
         return state;
     }
 
-    public Data CollectData(object obj)
+    public virtual Data CollectData(object obj)
     {
         if (obj is SeismicSensor sensor)
         {
@@ -44,7 +44,7 @@ public class Controller
         return null;
     }
 
-    public void SendCommand(object obj, string command)
+    public virtual void SendCommand(object obj, string command)
     {
         if (obj is DrillingEngineer engineer)
         {
@@ -53,14 +53,14 @@ public class Controller
         Console.WriteLine($"Команда '{command}' отправлена объекту {obj.GetType().Name}.");
     }
 
-    public ProcessedData ProcessData(Data data)
+    public virtual ProcessedData ProcessData(Data data)
     {
         var processed = new ProcessedData(new List<Data> { data });
         processed.ProcessedValues["AverageAmplitude"] = (double)data.Value;
         return processed;
     }
 
-    public Map CreateMap(ProcessedData data)
+    public virtual Map CreateMap(ProcessedData data)
     {
         var map = new Map();
         map.StartCreation();
@@ -69,7 +69,7 @@ public class Controller
         return map;
     }
 
-    public Report CreateReport(Analysis analysis)
+    public virtual Report CreateReport(Analysis analysis)
     {
         var report = new Report();
         report.StartCompilation();
@@ -79,7 +79,7 @@ public class Controller
         return report;
     }
 
-    public bool CheckDataSufficiency(Analysis analysis)
+    public virtual bool CheckDataSufficiency(Analysis analysis)
     {
         return analysis.Composition.ContainsKey("Нефть") && analysis.Composition["Нефть"] > 0;
     }

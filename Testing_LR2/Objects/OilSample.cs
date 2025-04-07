@@ -16,20 +16,20 @@ public class OilSample
     }
 
     // Методы
-    public void StartAnalysis()
+    public virtual void StartAnalysis()
     {
         state = "В процессе анализа";
         Console.WriteLine($"Анализ образца {sampleId} начат.");
     }
 
-    public void CompleteAnalysis(Dictionary<string, double> newComposition)
+    public virtual void CompleteAnalysis(Dictionary<string, double> newComposition)
     {
         state = "Проанализирован";
         composition = newComposition;
         Console.WriteLine($"Анализ образца {sampleId} завершен.");
     }
 
-    public string GetState()
+    public virtual string GetState()
     {
         return state;
     }

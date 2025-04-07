@@ -16,7 +16,7 @@ public class SeismicSensor
     }
 
     // Методы
-    public void Activate()
+    public virtual void Activate()
     {
         state = "Активен";
         Console.WriteLine("Сейсмический датчик активирован.");
@@ -28,7 +28,7 @@ public class SeismicSensor
         Console.WriteLine("Сейсмический датчик деактивирован.");
     }
 
-    public SeismicData RecordSeismicData()
+    public virtual SeismicData RecordSeismicData()
     {
         if (state == "Активен")
         {
@@ -39,7 +39,7 @@ public class SeismicSensor
         return null;
     }
 
-    public Data TransmitData(Controller controller)
+    public virtual Data TransmitData(Controller controller)
     {
         var latestData = recordedData.LastOrDefault();
         if (latestData != null)
@@ -49,12 +49,12 @@ public class SeismicSensor
         return null;
     }
 
-    public string CheckState()
+    public virtual string CheckState()
     {
         return state;
     }
 
-    public bool SelfDiagnose()
+    public virtual bool SelfDiagnose()
     {
         lastCheck = DateTime.Now;
         return new Random().Next(0, 2) == 0; // Имитация диагностики

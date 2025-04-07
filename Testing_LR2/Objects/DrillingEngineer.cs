@@ -3,8 +3,8 @@
 public class DrillingEngineer
 {
     // Поля
-    private string state;
-    private DrillingRig assignedRig;
+    public static string state;
+    public static DrillingRig assignedRig;
 
     // Конструктор
     public DrillingEngineer(DrillingRig rig)
@@ -14,25 +14,25 @@ public class DrillingEngineer
     }
 
     // Методы
-    public void StartWork()
+    public virtual void StartWork()
     {
         state = "Работает";
         Console.WriteLine("Буровой инженер начал работу.");
     }
 
-    public void TakeBreak()
+    public virtual void TakeBreak()
     {
         state = "Отдыхает";
         Console.WriteLine("Буровой инженер отдыхает.");
     }
 
-    public void Leave()
+    public virtual void Leave()
     {
         state = "Отсутствует";
         Console.WriteLine("Буровой инженер отсутствует.");
     }
 
-    public void StartDrilling(DrillingRig rig)
+    public virtual void StartDrilling(DrillingRig rig)
     {
         if (state == "Работает" && rig == assignedRig)
         {
@@ -40,7 +40,7 @@ public class DrillingEngineer
         }
     }
 
-    public void StopDrilling(DrillingRig rig)
+    public virtual void StopDrilling(DrillingRig rig)
     {
         if (state == "Работает" && rig == assignedRig)
         {
@@ -48,7 +48,7 @@ public class DrillingEngineer
         }
     }
 
-    public void ReceiveCommand(Controller controller, string command)
+    public virtual void ReceiveCommand(Controller controller, string command)
     {
         if (state == "Работает")
         {
@@ -63,7 +63,7 @@ public class DrillingEngineer
         }
     }
 
-    public string GetState()
+    public virtual string GetState()
     {
         return state;
     }

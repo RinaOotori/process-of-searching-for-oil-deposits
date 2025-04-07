@@ -3,9 +3,9 @@
 public class Geologist
 {
     // Поля
-    private string state;
-    private List<OilSample> analyzedSamples;
-    private List<SeismicData> seismicData;
+    public string state;
+    public List<OilSample> analyzedSamples;
+    public List<SeismicData> seismicData;
 
     // Конструктор
     public Geologist()
@@ -16,25 +16,25 @@ public class Geologist
     }
 
     // Методы
-    public void StartWork()
+    public virtual void StartWork()
     {
         state = "Работает";
         Console.WriteLine("Геолог начал работу.");
     }
 
-    public void TakeBreak()
+    public virtual void TakeBreak()
     {
         state = "Отдыхает";
         Console.WriteLine("Геолог отдыхает.");
     }
 
-    public void Leave()
+    public virtual void Leave()
     {
         state = "Отсутствует";
         Console.WriteLine("Геолог отсутствует.");
     }
 
-    public void ActivateSeismicSensor(SeismicSensor sensor)
+    public virtual void ActivateSeismicSensor(SeismicSensor sensor)
     {
         if (state == "Работает")
         {
@@ -42,7 +42,7 @@ public class Geologist
         }
     }
 
-    public Analysis AnalyzeSample(OilSample sample)
+    public virtual Analysis AnalyzeSample(OilSample sample)
     {
         if (state == "Работает")
         {
@@ -59,7 +59,7 @@ public class Geologist
         return null;
     }
 
-    public void TransmitData(Controller controller, Data data)
+    public virtual void TransmitData(Controller controller, Data data)
     {
         if (state == "Работает")
         {
@@ -67,7 +67,7 @@ public class Geologist
         }
     }
 
-    public string GetState()
+    public virtual string GetState()
     {
         return state;
     }

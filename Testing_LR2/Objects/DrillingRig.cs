@@ -16,7 +16,7 @@ public class DrillingRig
     }
 
     // Методы
-    public void StartDrilling()
+    public virtual void StartDrilling()
     {
         state = "Работает";
         drillingDepth += new Random().Next(10, 100);
@@ -29,7 +29,7 @@ public class DrillingRig
         Console.WriteLine("Бурение остановлено.");
     }
 
-    public OilSample ExtractSample()
+    public virtual OilSample ExtractSample()
     {
         if (state == "Работает")
         {
@@ -40,12 +40,12 @@ public class DrillingRig
         return null;
     }
 
-    public string CheckState()
+    public virtual string CheckState()
     {
         return state;
     }
 
-    public void PerformMaintenance()
+    public virtual void PerformMaintenance()
     {
         if (state == "Требует ремонта")
         {
