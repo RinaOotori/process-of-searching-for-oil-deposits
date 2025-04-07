@@ -84,7 +84,7 @@ public class ProcessManager
 
     public bool HasReserves(ProcessedData data)
     {
-        // Имитация проверки наличия запасов (в реальном коде это может быть сложная логика)
+        // Имитация проверки наличия запасов
         return data.ProcessedValues.ContainsKey("AverageAmplitude") && data.ProcessedValues["AverageAmplitude"] > 10;
     }
 }
